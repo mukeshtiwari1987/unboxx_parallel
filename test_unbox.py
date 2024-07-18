@@ -9,7 +9,8 @@ from selenium.webdriver.common.by import By
 LOGGER = logging.getLogger(__name__)
 base_url = "https://ssdevconsole-ui.unbxd.io/"
 page_title = "Unbxd - Search Dashboard"
-
+promotion_page = "https://ssdevconsole-nam.unbxd.io/ss/category-pages/merchandising/commerce-browse/657009/promotions"
+promotion_title = "Unbxd"
 class TestExamples(unittest.TestCase):
 
     def setUp(self):
@@ -31,6 +32,9 @@ class TestExamples(unittest.TestCase):
             driver.find_element(By.XPATH, "//button[normalize-space()='Login']").click()
             get_title = driver.title
             assert page_title in get_title
+            driver.get(promotion_page)
+            get_title = driver.title
+            assert promotion_title in get_title
         finally:
             LOGGER.info("Execution finished for Driver Session ID: " + driver.session_id)
 
